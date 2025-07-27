@@ -1,9 +1,10 @@
+
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const connectDB = require("./config/db");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const cloudinary = require("cloudinary").v2;
 const chatboxController = require("./controllers/chat/chatboxController");
 
@@ -16,9 +17,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+
+
+
 // Cấu hình CORS
 const corsOptions = {
-  origin: ["*"],
+  origin: ["https://dentist-ez.vercel.app"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -38,9 +42,10 @@ app.use(
   })
 );
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(bodyParser.json());
-require("dotenv").config();
+require('dotenv').config();
+
 
 // Route mặc định
 app.get("/", (req, res) => {
@@ -50,6 +55,9 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api", require("./routes/authRoute"));
 app.use("/app", require("./routes/appRoute"));
+
+
+
 
 // 404 handler
 app.use((req, res, next) => {
