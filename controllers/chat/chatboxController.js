@@ -9,7 +9,7 @@ const activePatients = new Set();
 module.exports.initializeSocket = (server) => {
   io = socketIo(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: "https://dentist-ez.vercel.app",
       methods: ["GET", "POST"],
       credentials: true,
     },
